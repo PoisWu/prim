@@ -16,12 +16,14 @@ kubectl patch configmap chains-config -n tekton-chains -p='{"data":{"artifacts.t
 kubectl patch configmap chains-config -n tekton-chains -p='{"data":{"artifacts.taskrun.storage": "oci"}}'
 kubectl patch configmap chains-config -n tekton-chains -p='{"data":{"transparency.enabled": "true"}}'
 
-# kubectl apply -f /home/pikachwu/tekton/chains/examples/kaniko/kaniko.yaml
+echo ""
 
 echo "${bb}Loading 3 Tasks: git-clone, buildpacks and buildpacks-phases...${nn}"
 kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/main/task/git-clone/0.9/git-clone.yaml
 kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/main/task/buildpacks/0.5/buildpacks.yaml
 kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/main/task/buildpacks-phases/0.2/buildpacks-phases.yaml
+
+echo ""
 
 echo "${bb}Loading a Pipeline : buildpacks${nn}"
 kubectl apply -f pipeline-buildpacks.yaml
