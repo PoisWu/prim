@@ -13,15 +13,16 @@ kubectl apply --filename https://storage.googleapis.com/tekton-releases/pipeline
 echo ""
 
 echo "${bb}Waiting for tekton pipeline being ready... ${nn}"
-kubectl wait --filename https://storage.googleapis.com/tekton-releases/pipeline/latest/release.yaml --for=condition=Ready
+kubectl wait --all pod --for=condition=Ready -n tekton-pipelines
 
 
 # Chaine 
 echo "${bb}Loading the tekton chain v0.14.0... ${nn}"
 kubectl apply --filename https://storage.googleapis.com/tekton-releases/chains/previous/v0.14.0/release.yaml
 
-echo "${bb}Waiting for tekton chain being ready... ${nn}"
-kubectl wait --filename https://storage.googleapis.com/tekton-releases/chains/previous/v0.14.0/release.yaml --for=condition=Ready
+# echo "${bb}Waiting for tekton chain being ready... ${nn}"
 
-echo "${green}Loading tekton completed.${nn}"
+# kubectl wait --filename https://storage.googleapis.com/tekton-releases/chains/previous/v0.14.0/release.yaml --for=condition=Ready
+
+# echo "${green}Loading tekton completed.${nn}"
 
